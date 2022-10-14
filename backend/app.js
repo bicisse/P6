@@ -15,10 +15,10 @@ app.get('/api', (req, res)=>{
 
 
 const authRouter = require('./routes/auth');
-app.use('/api/auth', authRouter)
+app.use('/api/auth', authRouter);
 const saucesRouter = require('./routes/sauces');
-app.use('/api/sauces', saucesRouter)
+app.use('/api/sauces', saucesRouter);
 const userRouter = require('./routes/user-tests');
-app.use('/users', userRouter)
+app.use('/users', userRouter);
 app.listen(3000)
 
