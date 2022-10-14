@@ -1,8 +1,14 @@
 
 const express = require('express');
 const fs = require('fs');
-const app = express();
 
+const mongoose = require('mongoose');
+const app = express();
+mongoose.connect('mongodb+srv://bicisse:harrypotter@cluster0.rmvm8jt.mongodb.net/?retryWrites=true&w=majority',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -10,14 +16,6 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, PATCH, OPTIONS');
     next();
   });
-
-app.use(express.static('public'));
-
-app.use(express.urlencoded({extended :true}));
-
-app.set('view engine', 'ejs');
-
-
 
 const apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
