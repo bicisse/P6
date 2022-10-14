@@ -8,4 +8,4 @@ router.post('/signup',(req,res)=>{
 router.post('/login',(req,res)=>{
     res.send('TEST POST AUTH LOGIN')
 });
-module.exports = router
+module.exports = router;
