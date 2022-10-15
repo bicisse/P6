@@ -1,5 +1,10 @@
 const mongoose = require('mongoose');
 
+// const usersLikedSchema = mongoose.Schema({
+//     sauce : {type: String},
+//     image : {type: Buffer}
+// });
+
 const saucesSchema = mongoose.Schema({
     userId : {type: String},
     name : {type: String},
@@ -10,8 +15,8 @@ const saucesSchema = mongoose.Schema({
     heat : {type: Number},
     likes : {type: Number},
     dislikes : {type: Number},
-    userLiked :[],
-    userId : [],
+    usersLiked : [],
+    usersDisliked :[]
     
 
 });
