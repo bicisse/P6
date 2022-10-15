@@ -1,31 +1,27 @@
 const express= require('express');
 const router = express.Router();
 router.use(express.json());
+const Login = require(`../models/login`);
+const SignUp = require(`../models/signup`);
 
 router.post('/signup',(req,res)=>{
-    res.writeHead(200, {'Content-Type': 'application/json'})
-    res.send('TEST POST AUTH SIGNUP');
-    console.log(req.body);
-    res.send('Done')
+    delete req.body._id; 
+    const signUp = new SignUp({
+      ...req.body
+    });
 
-    /*
-    {
-        email: string,
-        password : string
-
-    }
-    */
+    signUp.save()
+      .then(() => res.status(201).json({ message: 'Objet enregistré !'}))
+      .catch(error => res.status(400).json({WARNING: error.message }));
+    console.log('signUp ==>', signUp);
 });
+
 router.post('/login',(req,res)=>{
-    res.send('TEST POST AUTH LOGIN');
-    console.log(req.body);
-    res.send('Done')
-     /*
-    {
-        email: string,
-        password : string
-
-    }
-    */
+ 
+    Login.find()
+    .then(user => res.status(200).json(user))
+    .catch(error => res.status(400).json({ error }));
 });
+
+
 module.exports = router;

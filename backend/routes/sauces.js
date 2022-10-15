@@ -1,23 +1,26 @@
 const express= require('express');
 const router = express.Router();
+const Sauces = require(`../models/sauces`);
+const Like = require(`../models/like`);
+
 router.use(express.json());
+
 
 router.route('/')
     .get((req, res)=> {
             res.send('Test GET SAUCES /');
         })
     .post((req, res) =>{
-            res.send('test POST SAUCES/');
+            delete req.body._id; 
+            const newPostSauce = new Sauces({
+              ...req.body
+            });
+            newPostSauce.save()
+              .then(() => res.status(201).json({ message: 'SAUCE enregistrée !'}))
+              .catch(error => res.status(400).json(error.message ));
+            console.log('post sauces ==>', newPostSauce);
 
-
-
-             /*
-    {
-        sauce: string,
-        image : file
-
-    }
-    */
+            
         });
 
 router.route('/:id')
@@ -32,14 +35,15 @@ router.route('/:id')
     });
 
 router.post("/:id/like", (req, res)=>{
-     res.send('test POST SAUCES ID LIKE ');
-      /*
-    {
-        userId: string,
-        like: number
+    delete req.body._id; 
+            const newPostLike = new Like({
+              ...req.body
+            });
+            newPostLike.save()
+              .then(() => res.status(201).json({ message: 'LIKE enregistré !'}))
+              .catch(error => res.status(400).json({WARNING: error.message }));
+            console.log('post like ==>', newPostLike);
 
-    }
-    */
 })
 
 
