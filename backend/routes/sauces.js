@@ -1,11 +1,30 @@
 const express= require('express');
 const router = express.Router();
 const Sauces = require(`../models/sauces`);
+//router.use(express.json());
+
+const sauceController = require('../controllers/sauces');
 
 
-router.use(express.json());
+router.route('/')
+    .get(sauceController.getAllSauces)
+    .post(sauceController.createSauces);
+
+router.route('/:id')
+    .get(sauceController.getOneSauce)
+    .put(sauceController.modifySauce)
+    .delete(sauceController.deleteSauce);
+
+router.post("/:id/like", sauceController.likeSauce);
 
 
+
+module.exports = router
+
+
+// SAUVEGARDE
+/**
+ * 
 router.route('/')
     .get((req, res)=> {
         Sauces.find()
@@ -27,13 +46,23 @@ router.route('/')
 
 router.route('/:id')
     .get((req,res) =>{
-        res.send('test GET SAUCES ID ');
+        Sauces.findOne({ userId: req.params.id })
+        .then(sauce => res.status(200).json(sauce))
+        .catch(error => res.status(404).json({ error }));
     })
     .put((req,res) =>{
-        res.send('test PUT SAUCES ID ');
+        router.put('/api/stuff/:id', (req, res, next) => {
+            Sauces.updateOne({ _id: req.params.id }, { ...req.body, _id: req.params.id })
+              .then(() => res.status(200).json({ message: 'Objet modifié !'}))
+              .catch(error => res.status(400).json({ error }));
+          });
     })
     .delete((req,res) =>{
-        res.send('test DELETE SAUCES ID ');
+        router.delete('/api/stuff/:id', (req, res, next) => {
+            Sauces.deleteOne({ _id: req.params.id })
+              .then(() => res.status(200).json({ message: 'Objet supprimé !'}))
+              .catch(error => res.status(400).json({ error }));
+          });
     });
 
 router.post("/:id/like", (req, res)=>{
@@ -51,3 +80,4 @@ router.post("/:id/like", (req, res)=>{
 
 
 module.exports = router
+ */
