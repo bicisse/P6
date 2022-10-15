@@ -3,17 +3,6 @@ const Sauces = require('../models/sauces');
 //▶▶▶▶▶ CREATE A NEW SAUCE
 exports.createSauces = (req, res, next) => {
 const sauces = new Sauces ({
-    // userId: req.body.userId,
-    // name: req.body.name,
-    // manufacturer: req.body.manufacturer,
-    // description: req.body.description,
-    // mainPepper: req.body.mainPepper,
-    // imageUrl: req.body.imageUrl,
-    // heat: req.body.heat,
-    // likes: req.body.likes, 
-    // dislikes: req.body.dislikes,
-    // usersLiked: req.body.usersLiked,
-    // usersDisliked: req.body.usersDisliked,
     ...req.body
     
 });
@@ -49,17 +38,6 @@ exports.getOneSauce = (req, res, next) => {
 //▶▶▶▶▶ MODIFY A SAUCE
 exports.modifySauce = (req, res, next) => {
     const sauces = new Sauces ({
-        // userId: req.body.userId,
-        // name: req.body.name,
-        // manufacturer: req.body.manufacturer,
-        // description: req.body.description,
-        // mainPepper: req.body.mainPepper,
-        // imageUrl: req.body.imageUrl,
-        // heat: req.body.heat,
-        // likes: req.body.likes, 
-        // dislikes: req.body.dislikes,
-        // usersLiked: req.body.usersLiked,
-        // usersDisliked: req.body.usersDisliked,
         ...req.body
         
     });
