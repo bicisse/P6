@@ -17,8 +17,7 @@ app.use((req, res, next) => {
     next();
   });
 
-const apiRouter = require('./routes/api');
-app.use('/api', apiRouter);
+
 const authRouter = require('./routes/auth');
 app.use('/api/auth', authRouter);
 const saucesRouter = require('./routes/sauces');

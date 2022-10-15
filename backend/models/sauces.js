@@ -1,11 +1,18 @@
 const mongoose = require('mongoose');
 
 const saucesSchema = mongoose.Schema({
-    sauce: {type: String, required: true},
-    image : {
-        data: Buffer,
-        contentType: String
-    }
+    userId : {type: String},
+    name : {type: String},
+    manufacturer : {type: String},
+    description : {type: String},
+    mainPepper : {type: String},
+    imageUrl : {  type: String },
+    heat : {type: Number},
+    likes : {type: Number},
+    dislikes : {type: Number},
+    userLiked :[],
+    userId : [],
+    
 
 });
 
