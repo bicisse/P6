@@ -1,9 +1,5 @@
 const mongoose = require('mongoose');
 
-const usersLikedSchema = mongoose.Schema({
-    userId : {type: String},
-    like : {type: Number}
-});
 
 const saucesSchema = mongoose.Schema({
     userId : {type: String},
@@ -13,10 +9,10 @@ const saucesSchema = mongoose.Schema({
     mainPepper : {type: String},
     imageUrl : {  type: String },
     heat : {type: Number},
-    likes : {type: Number},
+    likes: {type: Number},
     dislikes : {type: Number},
-    usersLiked : [],
-    usersDisliked : usersLikedSchema
+    usersLiked: {type: Array},
+    usersDisliked : {type: Array}
     
 
 });

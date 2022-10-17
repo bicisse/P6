@@ -2,29 +2,11 @@ const Sauces = require('../models/sauces');
 const fs = require('fs');
 
 
+
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 //▶▶▶▶▶ CREATE A SAUCE
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
-// exports.createASauce = (req, res, next) => {
-//   const sauce = new Sauces({
-//    ...req.body
-//   });
 
-//   console.log('sauce', sauce);
-//   sauce.save().then(
-//     () => {
-//       res.status(201).json({
-//         message: 'Sauce created successfully!'
-//       });
-//     }
-//   ).catch(
-//     (error) => {
-//       res.status(400).json({
-//         error: error
-//       });
-//     }
-//   );
-// };
 
 exports.createASauce = (req, res, next) => {
   const sauceObject = JSON.parse(req.body.sauce);
@@ -50,7 +32,7 @@ exports.getASauce = (req, res, next) => {
   ).then(
     (sauce) => {
       console.log(sauce);
-      // res.status(200).json(sauce);
+     res.status(200).json(sauce);
     }
   ).catch(
     (error) => {
@@ -90,6 +72,7 @@ exports.updateASauce = (req, res, next) => {
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 //▶▶▶▶▶ DELETE A SAUCE
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
+
 exports.deleteASauce = (req, res, next) => {
   Sauces.findOne({ _id: req.params.id})
       .then(sauce => {
@@ -99,7 +82,7 @@ exports.deleteASauce = (req, res, next) => {
               const filename = sauce.imageUrl.split('/images/')[1];
               fs.unlink(`images/${filename}`, () => {
                   Sauces.deleteOne({_id: req.params.id})
-                      .then(() => { res.status(200).json({message: 'Sauce supprimée !'})})
+                      .then(() => { res.status(200).json({message: 'Objet supprimé !'})})
                       .catch(error => res.status(401).json({ error }));
               });
           }
@@ -108,16 +91,15 @@ exports.deleteASauce = (req, res, next) => {
           res.status(500).json({ error });
       });
 };
-
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 //▶▶▶▶▶ GET ALL SAUCES
 //〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰〰
 exports.getAllSauces = (req, res, next) => {
-  Sauces.find().then(
-    (sauces) => {
-      res.status(200).json(sauces);
-    }
-  ).catch(
+  Sauces.find()
+  .then(
+    (sauce) => {
+      res.status(200).json(sauce);})
+  .catch(
     (error) => {
       res.status(400).json({
         error: error

@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const path = require('path');
 
-app.use('./images', express.static(path.join(__dirname, 'images')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+
 
 const mongoose = require('mongoose');
 mongoose.connect('mongodb+srv://bicisse:harrypotter@piiquante.va0edoc.mongodb.net/?retryWrites=true&w=majority',
