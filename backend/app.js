@@ -1,10 +1,11 @@
-
 const express = require('express');
-const fs = require('fs');
+const app = express();
+const path = require('path');
+
+app.use('./images', express.static(path.join(__dirname, 'images')));
 
 const mongoose = require('mongoose');
-const app = express();
-mongoose.connect('mongodb+srv://bicisse:harrypotter@cluster0.rmvm8jt.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://bicisse:harrypotter@piiquante.va0edoc.mongodb.net/?retryWrites=true&w=majority',
   { useNewUrlParser: true,
     useUnifiedTopology: true })
   .then(() => console.log('Connexion à MongoDB réussie !'))

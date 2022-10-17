@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-// const usersLikedSchema = mongoose.Schema({
-//     sauce : {type: String},
-//     image : {type: Buffer}
-// });
+const usersLikedSchema = mongoose.Schema({
+    userId : {type: String},
+    like : {type: Number}
+});
 
 const saucesSchema = mongoose.Schema({
     userId : {type: String},
@@ -15,10 +15,13 @@ const saucesSchema = mongoose.Schema({
     heat : {type: Number},
     likes : {type: Number},
     dislikes : {type: Number},
-    usersLiked : ["String <userId>"],
-    usersDisliked : {type: Number}
+    usersLiked : [],
+    usersDisliked : usersLikedSchema
     
 
 });
+
+
+
 
 module.exports = mongoose.model('Sauces', saucesSchema);
