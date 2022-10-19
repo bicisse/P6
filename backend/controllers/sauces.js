@@ -204,8 +204,8 @@ exports.likeSauce = (req, res, next) => {
                     console.log('Like');
                     Sauces.updateOne(
                       { _id: req.params.id},
-                      {$inc: {dislikes: +1}, 
-                   $push: {usersDisliked: userId}
+                      {$inc: {likes: +1}, 
+                   $push: {usersLiked: userId}
                   }
                     )
                     .then(() => res.status(200).json({
