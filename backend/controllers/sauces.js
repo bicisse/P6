@@ -155,13 +155,11 @@ exports.likeSauce = (req, res, next) => {
         })
         .then((sauce) => {
 
-            console.log('UsersLiked', sauce.usersLiked);
-            console.log('UsersDisliked', sauce.usersDisliked);
             const userId = req.body.userId;
             const previousLikeVote = sauce.usersLiked.findIndex(element => element == userId);
             const previousDislikeVote = sauce.usersDisliked.findIndex(element => element == userId);
             console.log('REQ BODY LIKE', req.body.like);
-            console.log('TEST TEST ', sauce.dislike);
+            console.log('TEST TEST ', sauce.likes);
             const thumb = req.body.like;
             //
             console.log('------');
@@ -239,9 +237,7 @@ exports.likeSauce = (req, res, next) => {
 
             }
 
-            console.log(req.body.like);
-            console.log('UsersLiked', sauce.usersLiked);
-            console.log('UsersDisliked', sauce.usersDisliked);
+            
 
         })
         .catch(error => {
